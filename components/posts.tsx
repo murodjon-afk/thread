@@ -34,19 +34,23 @@ const Post = () => {
       </div>
 
 
-      <div className="flex justify-between text-gray-600 text-sm pt-2 text-white">
-        <button className="flex items-center gap-1 hover:text-black">
-          <span>24</span>
-        </button>
-        <button className="flex items-center gap-1 hover:text-black">
-          <span>8</span>
-        </button>
-        <button className="flex items-center gap-1 hover:text-black">
-          <span>3</span>
-        </button>
-        <button className="hover:text-black">
-        </button>
-      </div>
+      <div className="flex gap-[10%] text-gray-600 text-sm pt-2 text-white">
+  <button className="flex items-center gap-1 hover:text-black">
+    <Image src="/like.svg" alt="Like" width={16} height={16} />
+    <span>24</span>
+  </button>
+  <button className="flex items-center gap-1 hover:text-black">
+    <Image src="/coment.svg" alt="Comment" width={16} height={16} />
+    <span>8</span>
+  </button>
+  <button className="flex items-center gap-1 hover:text-black">
+    <Image src="/share.svg" alt="Share" width={16} height={16} />
+    <span>3</span>
+  </button>
+  <button className="hover:text-black">
+    <Image src="/save.svg" alt="Save" width={16} height={16} />
+  </button>
+</div>
 
       <div className="pt-2 border-t text-sm text-gray-600">
         <p className="text-white">

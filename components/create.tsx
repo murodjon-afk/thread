@@ -1,12 +1,7 @@
 'use client';
 import React, { useRef, useState } from 'react';
 import Image from 'next/image';
-import { UserButton } from '@clerk/nextjs';
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-} from "@clerk/nextjs";
+
 type ModalPostProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -32,11 +27,11 @@ const ModalPost: React.FC<ModalPostProps> = ({ isOpen, onClose }) => {
   ];
 
   const gifs = [
-    'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzc5aXRtdjN2ZW56MnhmcnN5NTFkaTBhd3RzcGQ1cjkzMHRscGIxNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Ynxe6hEwjITyAu2v80/giphy.gif',
-    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzUyN3pxZGI3b2UwYXcyM2V2Y2k3OGJoYXEwZ212bWU5ZjlrenJyZSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Qw4X3FLQZZLJ4ndBcPK/giphy.gif',
-    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWtwaW1kNngxb2ZhcXgzYWZlYWxzd3A1MGJsZHg0cTdsaGdmZTFpZiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/gdguNVFdq0Tf0xVBds/giphy.gif',
-    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbGhhejU3bmU0OGRvaXdzY3p2d3p5cTBleHd2NnQ1ZTNiNnk5anMzbCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/bnZ73g0fO0c6s/giphy.gif',
-    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzk2cHMyaHR4cHVjbDZ0aDRpYWN3MTZ6eHk0YjdiamdsdGwycHNxciZlcD12MV9naWZzX3NlYXJjaCZjdD1n/febzgZfQrdU2ahhyeT/giphy.gif',
+    'https://media4.giphy.com/media/Ynxe6hEwjITyAu2v80/giphy.gif',
+    'https://media.giphy.com/media/Qw4X3FLQZZLJ4ndBcPK/giphy.gif',
+    'https://media.giphy.com/media/gdguNVFdq0Tf0xVBds/giphy.gif',
+    'https://media.giphy.com/media/bnZ73g0fO0c6s/giphy.gif',
+    'https://media.giphy.com/media/febzgZfQrdU2ahhyeT/giphy.gif',
   ];
 
   if (!isOpen) return null;
@@ -106,25 +101,16 @@ const ModalPost: React.FC<ModalPostProps> = ({ isOpen, onClose }) => {
         </div>
 
         <div className="flex items-start gap-4 justify-center">
-          <div className="relative w-16  h-16 ">
-          
-          <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-
-       
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="w-[60px] h-[60px] rounded-full bg-gray-700 flex items-center justify-center">
-                  <Image
-                    src="/profile.svg"
-                    alt="Sign In"
-                    width={30}
-                    height={30}
-                  />
-                </button>
-              </SignInButton>
-            </SignedOut>
+          <div className="relative w-16 h-16">
+            <button className="w-[60px] h-[60px] rounded-full bg-gray-700 flex items-center justify-center">
+              <Image
+                src="/profile.svg"
+                alt="Sign In"
+                width={30}
+                height={30}
+              />
+            </button>
+            <p className="text-white text-xs text-center mt-1">Гость</p>
           </div>
 
           <div className="flex flex-col w-full">
@@ -201,10 +187,6 @@ const ModalPost: React.FC<ModalPostProps> = ({ isOpen, onClose }) => {
                 onChange={handleHashChange}
                 className="mt-4 h-[40px] border-b border-gray-600 rounded-lg p-3 text-sm bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 ease-in-out"
               />
-            )}
-
-            {selectedLocation && (
-              <h1 className="hidden">{selectedLocation}</h1>
             )}
           </div>
         </div>

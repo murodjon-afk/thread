@@ -6,7 +6,7 @@ export default function UserSearchMock() {
     <div className="flex items-center justify-between p-4 border rounded-lg shadow-sm  text-white w-[89%]">
       <div className="flex items-center gap-4">
       <Image
-  src="/path-to-image.jpg"
+  src="/favicon.ico"
   alt="User avatar"
   width={48}
   height={48}

@@ -4,14 +4,10 @@ import Image from "next/image";
 import Post from "@/components/posts";
 import { useState } from "react";
 import ModalPost from "@/components/create";
-import {
-  SignedIn,
-  SignedOut,
-  UserButton,
-  SignInButton,
-} from "@clerk/nextjs";
+import { useSession } from "next-auth/react";  
 
 export default function Home() {
+  const { data: session } = useSession();  
   const [open, setOpen] = useState(false);
 
   return (
@@ -20,37 +16,41 @@ export default function Home() {
         <h1 className="text-white pt-3 pb-2">For you</h1>
         <div className="h-[100%] w-[40%] bg-[#181818] rounded-t-[10px] overflow-auto scrollbar-none pb-5">
           <div className="px-3 w-[100%] h-20 flex items-center justify-between px-7 border-b-1 border-gray-500">
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-
-       
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="w-[60px] h-[60px] rounded-full bg-gray-700 flex items-center justify-center">
+            {session?.user ? (  
+              <>
+             
+                <div className="w-[60px] h-[60px] rounded-full  flex items-center justify-center">
                   <Image
-                    src="/profile.svg"
-                    alt="Sign In"
-                    width={30}
-                    height={30}
+                    src={session.user.image || "/profile.svg"} 
+                    alt="User"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
                   />
+                </div>
+
+                <h1
+                  className="w-[90%] pl-5 h-[100%] flex items-center cursor-text text-white"
+                  onClick={() => setOpen(true)}
+                >
+                  Whats new?
+                </h1>
+
+                <button
+                  className="w-20 h-10 bg-[#181818] text-white border rounded-[10px] cursor-pointer"
+                  onClick={() => setOpen(true)}
+                >
+                  Post
                 </button>
-              </SignInButton>
-            </SignedOut>
-
-            <h1
-              className="w-[90%] pl-5 h-[100%] flex items-center cursor-text text-white"
-              onClick={() => setOpen(true)}
-            >
-              Whats new?
-            </h1>
-
-            <button
-              className="w-20 h-10 bg-[#181818] text-white border rounded-[10px] cursor-pointer"
-              onClick={() => setOpen(true)}
-            >
-              Post
-            </button>
+              </>
+            ) : (
+              <button
+                className="w-[100%] h-10 bg-[#181818] text-white border rounded-[10px] cursor-pointer"
+                onClick={() => window.location.href = '/api/auth/signin'}  
+              >
+                Signin
+              </button>
+            )}
           </div>
 
           <div className="flex gap-5 flex-col">
